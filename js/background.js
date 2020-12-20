@@ -1,7 +1,7 @@
 
 
 import {makeStars} from "../js/star.js";
-import {makeRoof} from "../js/roof.js";
+// import {makeRoof} from "./trees.js";
 
 // 배경 
 let mainSheet;
@@ -11,7 +11,6 @@ window.onload = function(){
     mainSheet.style.position = "absolute";
     setBack();
     mainSheet.appendChild(makeStars(100));
-    mainSheet.appendChild(makeRoof());
 }
 
 function setBack(){
