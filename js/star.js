@@ -28,6 +28,7 @@ export function makeStars(starNum, W, H){
             starColor : ["rgb(255,255,255)", "rgb(115,137,166)", "rgb(247,241,226)"],
             starOpacity : [0.2,0.3],
             Size: 0,
+            canMove: new Boolean(false),
             set : function(starSize){
                 this.canvas.width = starSize*6;
                 this.canvas.height = starSize*6;
@@ -76,15 +77,7 @@ export function makeStars(starNum, W, H){
         Star.canvas.style.marginLeft = X - (S*6/3) + "px";
         Star.canvas.style.backgroundColor = "rgba(0,0,0,0)";
         Stars.push(Star);
-        if(Star.Size >= 5*6){
-            console.log("add!");
-            addE(Star);
-        }
-        if(Star.Size >= 5*6){
-            Star.canvas.style.backgroundColor = "rgba(125,0,0,1)";
-            Star.canvas.style.stroke = "rgb(255,255,255)";
-            Star.canvas.style.strokeWidth = "1px";
-        }
+        addE(Star);
         StarCanvas.appendChild(Stars[i-1].canvas);
     }
     return StarCanvas;
@@ -93,23 +86,31 @@ export function makeStars(starNum, W, H){
 
 function addE(Star){
     Star.canvas.addEventListener("mousedown",(e) => {
-        let downX = e.clientX;
-        let downY = e.clientY;
-        console.log(downX, downY);
-        let a = Star.canvas.addEventListener("mousemove",(e) =>{
-            let moveX = e.clientX;
-            let moveY = e.clientY;
-            Star.canvas.style.marginLeft = moveX - (Star.Size/2) + "px";
-            Star.canvas.style.marginTop = moveY - (Star.Size/2) + "px";
-            console.log(Star.canvas.style.marginLeft, Star.canvas.style.marginTop);
-            Star.canvas.addEventListener("mouseup",() =>{
-                Star.canvas.removeEventListener("mousemove",a);
-            });
+        Star.canMove = true;
+        Star.canvas.addEventListener("mouseup",() =>{
+            Star.canMove = false;
+        })
+        Star.canvas.addEventListener("mousemove",(e) =>{
+            getmove(e,Star);
         });
+        Star.canvas.addEventListener("mouseout",(e) =>{
+            if(Star.canMove == false){
+                return;
+            }
+            let jumpX = e.clientX;
+            let jumpY = e.clientY;
+            Star.canvas.style.marginLeft = jumpX - (Star.Size/2) + "px";
+            Star.canvas.style.marginTop = jumpY - (Star.Size/2) + "px";
+        })
     });
 }
 
-// function getmove(e, Star){
-    
-//     Star.canvas.removeEventListn
-// }
+function getmove(e, Star){
+    if(Star.canMove == false){
+        return;
+    }
+    let moveX = e.clientX;
+    let moveY = e.clientY;
+    Star.canvas.style.marginLeft = moveX - (Star.Size/2) + "px";
+    Star.canvas.style.marginTop = moveY - (Star.Size/2) + "px";
+}
