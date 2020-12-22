@@ -2,32 +2,21 @@
 // 천장 배경
 
 let treeCanvas = document.createElement("div");
+let tree = document.createElement("canvas");
 
 export function makeTree(){
-    treeCanvas = document.createElement("div");
-    treeCanvas.width = window.innerWidth;
-    treeCanvas.height = window.innerHeight;
+    treeCanvas.style.width = window.innerWidth;
+    treeCanvas.style.height = window.innerHeight;
     treeCanvas.style.position = "absolute";
-
-    let ctx = roofCanvas.getContext('2d');
-    ctx.fillStyle 
-    
+    tree.width = window.innerWidth;
+    tree.height = window.innerHeight;
+    tree.style.position = "absolute";
+    DrawTree(10, window.innerHeight, 0, -1, window.innerWidth / 20);
     return treeCanvas;
 }
 
-function Tree(posX){
-    let canvas = document.createElement("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.style.position = "absolute";
-    let ctx = canvas.getContext('2d');
-    ctx.moveTo(posX, window.innerHeight);
-    let start = setInterval(function(){
-        ctx.beginPath();
-    }, 1);
-
-}
-
-function draw(A, B, width, VecX, VecY){
-
+function DrawTree(X, Y, dirX, dirY, Width){
+    let ctx = tree.getContext('2d');
+    ctx.fillStyle = "rgba(0,0,0)";
+    
 }

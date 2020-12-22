@@ -1,30 +1,39 @@
 
 
 import {makeStars} from "../js/star.js";
-// import {makeRoof} from "./trees.js";
 
 // 배경 
 let mainSheet;
+let BackSheet = document.createElement("div");
 
 window.onload = function(){
     mainSheet = document.getElementById("body");
     mainSheet.style.position = "absolute";
+    mainSheet.style.overflow = "hidden";
+    mainSheet.style.width = window.innerWidth;
+    mainSheet.style.height = window.innerHeight;
+    BackSheet.style.position = "absolute";
+    BackSheet.width = window.innerWidth*4;
+    BackSheet.height = window.innerHeight*4;
+    BackSheet.style.margin = "0px";
+    mainSheet.appendChild(BackSheet);
     setBack();
-    mainSheet.appendChild(makeStars(100));
+    BackSheet.appendChild(makeStars(1000, window.innerWidth, window.innerHeight));
+    // 이벤트 추가
 }
 
 function setBack(){
     let BackCanvas = document.createElement("canvas");
     BackCanvas.style.position = "absolute";
-    mainSheet.appendChild(BackCanvas);
+    BackSheet.appendChild(BackCanvas);
     BackCanvas.width = window.innerWidth;
     BackCanvas.height = window.innerHeight;
-
+    BackCanvas.style.margin = "0px";
     let ctx = BackCanvas.getContext('2d');
     // ctx.fillStyle = "rgb(14,12,13)";
     // ctx.fillStyle = "rgb(1, 13, 30)";
     // "rgb(1 13 30)"
-    ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+    // ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     //R = 18 G = 25 ~ 45 B = 35 ~ 60
     let increaseG = 15 / window.innerHeight;
     let increaseB = 20 / window.innerHeight;
@@ -35,7 +44,6 @@ function setBack(){
         G = G + increaseG;
         B = B + increaseB;
         ctx.beginPath();
-        ctx.fillRect(0,height,window.innerWidth,1);
+        ctx.fillRect(0,height,window.innerWidth*4,1);
     }
-    
 }
