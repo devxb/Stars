@@ -13,13 +13,13 @@ export function makeStars(starNum, W, H){
     for(let i = 1; i < 50; i++){
         starSize.push(1);
     }
-    for(let i = 1; i < 43; i++){
+    for(let i = 1; i < 38; i++){
         starSize.push(2);
     }
-    for(let i = 1; i <= 5; i++){
+    for(let i = 1; i <= 7; i++){
         starSize.push(3);
     }
-    for(let i = 1; i <= 2; i++){
+    for(let i = 1; i <= 5; i++){
         starSize.push(5);
     }
     for(let i = 1; i <= starNum; i++){
