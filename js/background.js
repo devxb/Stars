@@ -18,7 +18,7 @@ window.onload = function(){
     BackSheet.style.margin = "0px";
     mainSheet.appendChild(BackSheet);
     setBack();
-    BackSheet.appendChild(makeStars(1000, window.innerWidth, window.innerHeight));
+    BackSheet.appendChild(makeStars(2000, window.innerWidth, window.innerHeight));
     // 이벤트 추가
 }
 
